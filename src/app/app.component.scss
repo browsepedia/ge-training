@@ -1,0 +1,24 @@
+.link-active {
+  border-bottom: 2px solid white;
+}
+
+.app-name {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 24px;
+}
+
+.link-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 420px;
+  margin: 12px auto;
+}

@@ -1,0 +1,105 @@
+<form class="user-form" [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput />
+    <mat-error>Name is required</mat-error>
+  </mat-form-field>
+
+  {{ form.controls["name"].errors | json }}
+
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input formControlName="username" matInput />
+    <mat-error>Username is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+    <mat-error>Email is must be valid</mat-error>
+  </mat-form-field>
+
+  <div class="user-form-company" formGroupName="company">
+    <h2>Company</h2>
+    <mat-form-field>
+      <mat-label>Company name</mat-label>
+      <input formControlName="name" matInput />
+      <mat-error>Company name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>BS</mat-label>
+      <input formControlName="bs" matInput />
+      <mat-error>BS is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Catch Phrase</mat-label>
+      <input formControlName="catchPhrase" matInput />
+      <mat-error>Catch Phrase is required</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="addresses-container">
+    <h2>Addresses</h2>
+    <div
+      class="address-form-contaner"
+      formArrayName="addresses"
+    >
+      <ng-container
+        *ngFor="
+          let addressForm of form.controls['addresses']
+            .controls;
+          let index = index
+        "
+      >
+        <div [formGroup]="addressForm">
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input formControlName="street" matInput />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input formControlName="city" matInput />
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            [disabled]="!canRemoveAddress"
+            color="warn"
+            (click)="removeAddress(index)"
+          >
+            Remove Address
+          </button>
+        </div>
+      </ng-container>
+    </div>
+
+    <button
+      [disabled]="!canAddAddress"
+      mat-flat-button
+      color="primary"
+      (click)="addNewAddress()"
+    >
+      Add Address
+    </button>
+  </div>
+
+  {{ form.errors | json }}
+
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="form.invalid"
+  >
+    Save
+  </button>
+</form>
+
+<h2>
+  {{ form.valid }}
+</h2>
+<h1>
+  {{ form.value | json }}
+</h1>

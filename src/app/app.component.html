@@ -1,10 +1,47 @@
-<app-alert-button />
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h2 class="app-name">User management app</h2>
 
-<app-success-button
-  [buttonLabel]="buttonLabel"
-  (buttonClick)="onButtonClick($event)"
-/>
+    <div class="link-container">
+      <button
+        routerLinkActive="link-active"
+        routerLink="/users"
+        mat-button
+      >
+        Users
+      </button>
+      <button
+        routerLinkActive="link-active"
+        routerLink="/posts"
+        mat-button
+      >
+        Posts
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-<app-alert-button />
+<div class="form" [formGroup]="passwordForm">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
 
-<div title="Test">Hello</div>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Confirm</mat-label>
+    <input matInput formControlName="confirm" />
+  </mat-form-field>
+
+  <app-star-rating-field formControlName="rating" />
+</div>
+
+{{ passwordForm.value | json }}
+
+<div>
+  <router-outlet></router-outlet>
+</div>

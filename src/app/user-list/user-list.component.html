@@ -1,0 +1,33 @@
+<mat-form-field
+  subscriptSizing="dynamic"
+  appearance="outline"
+>
+  <mat-label>Search</mat-label>
+  <input
+    [formControl]="searchControl"
+    matInput
+    placeholder="...search"
+  />
+</mat-form-field>
+
+<mat-list>
+  <ng-container *ngFor="let user of filteredUsers$ | async">
+    <mat-list-item>
+      <div class="user-list-item">
+        <span>
+          {{ user.name }}
+        </span>
+
+        <button
+          mat-icon-button
+          color="primary"
+          routerLink="{{ '/users/' + user.id }}"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+
+    <mat-divider />
+  </ng-container>
+</mat-list>
